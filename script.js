@@ -109,6 +109,7 @@ const hitbox = {
     alto: 8
 };
 
+
 const limites = {
     izquierda: 22,
     derecha: 307,
@@ -192,6 +193,7 @@ const zonaEscritorio = {
     alto: 18
 };
 
+
 const zonaCama = {
     x: 25,
     y: 215,
@@ -199,12 +201,14 @@ const zonaCama = {
     alto: 25
 };
 
+
 const zonaMuebleDerecho = {
     x: 235,
     y: 245,
     ancho: 27,
     alto: 80
 };
+
 
 const zonaComoda = {
     x: 170,
@@ -952,8 +956,6 @@ function crearMemoria() {
         }
     );
 }
-
-
 function voltearCarta(
     carta
 ) {
@@ -1174,6 +1176,8 @@ function crearRompecabezas() {
 
     dibujarRompecabezas();
 }
+
+
 function dibujarRompecabezas() {
 
     tableroRompecabezas.innerHTML = "";
@@ -1790,8 +1794,6 @@ volverHabitacion.addEventListener(
 // =============================================
 
 let codigoIntroducido = "";
-
-
 function abrirCerradura() {
 
     codigoIntroducido = "";
@@ -1929,20 +1931,24 @@ function iniciarFinal() {
     );
 
 
-    // LIMPIAR JARDÍN
+    // LIMPIAR FINAL
 
     jardinLirios.innerHTML = "";
     estrellasFinal.innerHTML = "";
     petalosFinal.innerHTML = "";
 
 
+    // REINICIAR POSICIÓN DEL RAMO
+
+    jardinLirios.classList.remove(
+        "ramo-mostrar-michi"
+    );
+
+
     // REINICIAR MENSAJE
 
     mensajeFinal.classList.remove(
-        "mensaje-final-visible"
-    );
-
-    mensajeFinal.classList.remove(
+        "mensaje-final-visible",
         "mensaje-final-saliendo"
     );
 
@@ -1951,13 +1957,10 @@ function iniciarFinal() {
     );
 
 
-    // REINICIAR MICHI CON EL CARTEL
+    // REINICIAR MICHI
 
     michiCartelFinal.classList.remove(
-        "michi-cartel-visible"
-    );
-
-    michiCartelFinal.classList.remove(
+        "michi-cartel-visible",
         "michi-cartel-reposo"
     );
 
@@ -1966,9 +1969,12 @@ function iniciarFinal() {
     );
 
 
-    // CREAR EL JARDÍN
+    // DESTELLOS
 
     crearDestellos();
+
+
+    // CREAR UN ÚNICO RAMO CENTRAL
 
     crearJardinLirios();
 
@@ -1977,7 +1983,7 @@ function iniciarFinal() {
 
     setTimeout(
         crearPetalosVolando,
-        3600
+        3800
     );
 
 
@@ -1995,11 +2001,11 @@ function iniciarFinal() {
             );
 
         },
-        7200
+        6500
     );
 
 
-    // EMPIEZA A DESAPARECER
+    // CASO RESUELTO EMPIEZA A DESAPARECER
 
     setTimeout(
         () => {
@@ -2009,11 +2015,11 @@ function iniciarFinal() {
             );
 
         },
-        13500
+        12500
     );
 
 
-    // SE OCULTA EL MENSAJE
+    // QUITAR MENSAJE Y SUBIR RAMO
 
     setTimeout(
         () => {
@@ -2026,12 +2032,16 @@ function iniciarFinal() {
                 "mensaje-final-oculto"
             );
 
+            jardinLirios.classList.add(
+                "ramo-mostrar-michi"
+            );
+
         },
-        14500
+        13600
     );
 
 
-    // APARECE ULTIMO.PNG
+    // APARECE MICHI DEBAJO DEL RAMO
 
     setTimeout(
         () => {
@@ -2045,11 +2055,11 @@ function iniciarFinal() {
             );
 
         },
-        14700
+        14000
     );
 
 
-    // MOVIMIENTO SUAVE DEL GATO
+    // MOVIMIENTO SUAVE DE MICHI
 
     setTimeout(
         () => {
@@ -2059,58 +2069,64 @@ function iniciarFinal() {
             );
 
         },
-        16300
+        15600
     );
 }
 
 
 // =====================================================
-// JARDÍN
+// RAMO CENTRAL
 // =====================================================
 
 function crearJardinLirios() {
 
     jardinLirios.innerHTML = "";
 
-    /*
-        Los grupos no son simétricos.
+    jardinLirios.classList.remove(
+        "ramo-mostrar-michi"
+    );
 
-        Los dos primeros forman el lado izquierdo.
-        Los otros dos forman el lado derecho.
+    /*
+        RAMO DE LIRIOS
+
+        Los grupos nacen prácticamente
+        desde el mismo centro.
+
+        Los de los lados se inclinan
+        para crear la forma de abanico.
     */
 
     const grupos = [
 
         {
-            x: -4,
-            escala: 1.05,
+            x: 42,
+            escala: .66,
+            retraso: .20,
+            lado: "izquierda"
+        },
+
+        {
+            x: 47,
+            escala: .82,
+            retraso: .08,
+            lado: "izquierda"
+        },
+
+        {
+            x: 52,
+            escala: .86,
             retraso: 0,
-            lado: "izquierda"
-        },
-
-        {
-            x: 10,
-            escala: .88,
-            retraso: .55,
-            lado: "izquierda"
-        },
-
-        {
-            x: 72,
-            escala: .90,
-            retraso: .30,
             lado: "derecha"
         },
 
         {
-            x: 86,
-            escala: 1.04,
-            retraso: .08,
+            x: 57,
+            escala: .66,
+            retraso: .18,
             lado: "derecha"
         }
 
     ];
-
 
     grupos.forEach(
         datos => {
@@ -2120,6 +2136,93 @@ function crearJardinLirios() {
                 datos.escala,
                 datos.retraso,
                 datos.lado
+            );
+
+        }
+    );
+
+
+    /*
+        BASE VERDE DEL RAMO
+
+        Esta parte une visualmente
+        todos los tallos.
+    */
+
+    const base =
+        document.createElement(
+            "div"
+        );
+
+    base.className =
+        "base-verde-ramo";
+
+    jardinLirios.appendChild(
+        base
+    );
+
+
+    /*
+        HOJAS GRANDES DE LA BASE
+    */
+
+    const hojasBase = [
+
+        [-70, 95, -54],
+        [-55, 115, -43],
+        [-40, 130, -32],
+        [-25, 145, -20],
+        [-12, 155, -10],
+
+        [0, 165, 0],
+
+        [12, 155, 10],
+        [25, 145, 20],
+        [40, 130, 32],
+        [55, 115, 43],
+        [70, 95, 54]
+
+    ];
+
+    hojasBase.forEach(
+        (
+            hoja,
+            indice
+        ) => {
+
+            const elemento =
+                document.createElement(
+                    "div"
+                );
+
+            elemento.className =
+                "hoja-ramo-central";
+
+            elemento.style.setProperty(
+                "--desplazamiento",
+                hoja[0] + "px"
+            );
+
+            elemento.style.setProperty(
+                "--alto",
+                hoja[1] + "px"
+            );
+
+            elemento.style.setProperty(
+                "--rotacion",
+                hoja[2] + "deg"
+            );
+
+            elemento.style.setProperty(
+                "--retraso",
+                (
+                    .6 +
+                    indice * .07
+                ) + "s"
+            );
+
+            base.appendChild(
+                elemento
             );
 
         }
@@ -2386,7 +2489,7 @@ function crearGrupoLirios(
 
 
     // =================================================
-    // DISTRIBUCIÓN DIFERENTE SEGÚN EL LADO
+    // FLORES DEL LADO IZQUIERDO
     // =================================================
 
     if (
@@ -2490,9 +2593,7 @@ function crearGrupoLirios(
             retraso + 2.88,
             6
         );
-
-
-        crearFlorDetallada(
+                crearFlorDetallada(
             grupo,
             18,
             270,
@@ -2715,6 +2816,8 @@ function crearGrupoLirios(
     );
 
 }
+
+
 // =====================================================
 // TALLO
 // =====================================================
@@ -3294,6 +3397,8 @@ function crearCapullo(
     );
 
 }
+
+
 // =====================================================
 // PÉTALOS VOLANDO
 // =====================================================

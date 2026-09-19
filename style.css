@@ -898,8 +898,7 @@ button {
 
 #volver-habitacion {
     border: none;
-
-    padding: 10px 20px;
+        padding: 10px 20px;
 
     border-radius: 7px;
 
@@ -1798,8 +1797,7 @@ button {
             #efb95b,
             #f9e7a4
         );
-
-    transform-origin:
+            transform-origin:
         50% 100%;
 
     transform:
@@ -2402,9 +2400,6 @@ button {
         filter 1s ease;
 }
 
-
-/* Estado inicial */
-
 .michi-cartel-oculto {
     opacity: 0;
 
@@ -2416,9 +2411,6 @@ button {
         blur(2px);
 }
 
-
-/* Estado visible */
-
 .michi-cartel-visible {
     opacity: 1;
 
@@ -2429,9 +2421,6 @@ button {
     filter:
         blur(0);
 }
-
-
-/* Imagen pixel art */
 
 #imagen-michi-cartel {
     display: block;
@@ -2457,35 +2446,53 @@ button {
 
 #texto-cartel-final {
     position: absolute;
+
     left: 56%;
     top: 13%;
+
     width: 66%;
-    transform: translateX(-50%);
+
+    transform:
+        translateX(-50%);
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
 
     gap: 4px;
+
     text-align: center;
 
     color: #321d11;
-    font-family: "Courier New", monospace;
 
-    font-size: clamp(9px, 1.9vw, 14px);
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 
+    clamp(6px, 1.2vw, 9px);
     font-weight: 900;
+
     line-height: 1.15;
 
-    text-shadow: 1px 1px 0 rgba(255, 220, 155, .35);
+    text-shadow:
+        1px 1px 0
+        rgba(255,220,155,.35);
 }
 
 #texto-cartel-final span {
     display: block;
+
     width: 100%;
+
     white-space: nowrap;
+
     text-align: center;
 }
+
+
 /* =====================================================
    PEQUEÑO REBOTE AL ENTRAR
 ===================================================== */
@@ -2504,7 +2511,7 @@ button {
         opacity: 0;
 
         transform:
-            translate(-50%, 125px)
+            translate(-50%,125px)
             scale(.88);
     }
 
@@ -2512,13 +2519,13 @@ button {
         opacity: 1;
 
         transform:
-            translate(-50%, -12px)
+            translate(-50%,-12px)
             scale(1.02);
     }
 
     84% {
         transform:
-            translate(-50%, 5px)
+            translate(-50%,5px)
             scale(.99);
     }
 
@@ -2526,7 +2533,7 @@ button {
         opacity: 1;
 
         transform:
-            translate(-50%, 0)
+            translate(-50%,0)
             scale(1);
     }
 }
@@ -2548,20 +2555,20 @@ button {
 
     from {
         transform:
-            translate(-50%, 0)
+            translate(-50%,0)
             scale(1);
     }
 
     to {
         transform:
-            translate(-50%, -4px)
+            translate(-50%,-4px)
             scale(1);
     }
 }
 
 
 /* =====================================================
-   CELULAR
+   CELULAR ORIGINAL
 ===================================================== */
 
 @media (max-width: 600px) {
@@ -2580,7 +2587,7 @@ button {
 
     #michi-cartel-final {
         width:
-            min(92vw, 350px);
+            min(92vw,350px);
 
         bottom: 2%;
     }
@@ -2593,6 +2600,577 @@ button {
         gap: 2px;
 
         font-size:
-            clamp(9px, 3vw, 14px);
+            clamp(9px,3vw,14px);
     }
-} 
+}
+
+
+/* =====================================================
+   NUEVO FINAL
+   RAMO CENTRAL
+===================================================== */
+
+/*
+    El jardín ahora funciona como contenedor
+    del ramo completo.
+
+    Cuando aparece Michi, todo el ramo sube
+    suavemente para dejarle espacio debajo.
+*/
+
+#jardin-lirios {
+    z-index: 4;
+
+    overflow: hidden;
+
+    transition:
+        transform 1.15s
+        cubic-bezier(.2,.75,.25,1);
+
+    transform-origin:
+        center center;
+}
+
+
+/*
+    Los cuatro grupos creados desde JavaScript
+    se juntan en el centro para parecer
+    un único ramo.
+*/
+
+    .cinta-ramo-central {
+        bottom: 32%;
+    
+}
+
+
+    /*
+        El mensaje queda delante del ramo.
+    */
+
+    #mensaje-final {
+        top: 43%;
+
+        width:
+            min(82vw,305px);
+    }
+
+
+    /*
+        Al desaparecer el mensaje,
+        el ramo sube.
+    */
+
+    #jardin-lirios.ramo-mostrar-michi {
+        transform:
+            translateY(-11vh)
+            scale(.88);
+    }
+
+
+    /*
+        Michi queda debajo del ramo.
+    */
+
+    #michi-cartel-final {
+        width:
+            min(76vw,290px);
+
+        bottom: -1%;
+    }
+
+
+    /*
+        Conservamos la posición del texto
+        que ya habías ajustado.
+    */
+
+    #texto-cartel-final {
+        left: 56%;
+
+        top: 13%;
+
+        width: 49%;
+    }
+
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media (max-width: 400px) {
+
+    #jardin-lirios
+    .grupo-lirios {
+        bottom: 33%;
+
+        width: 145px;
+        height: 310px;
+    }
+
+    .envoltura-ramo-central {
+        bottom: 29%;
+
+        width: 100px;
+        height: 105px;
+    }
+
+    .cinta-ramo-central {
+        bottom: 36%;
+    }
+
+    #jardin-lirios.ramo-mostrar-michi {
+        transform:
+            translateY(-10vh)
+            scale(.84);
+    }
+
+    #michi-cartel-final {
+        width:
+            min(80vw,275px);
+    }
+}
+/* =====================================================
+   RAMO FINAL SIN PAPEL
+===================================================== */
+
+
+/* -----------------------------------------------------
+   OCULTAR PAPEL Y CINTA ANTIGUOS
+----------------------------------------------------- */
+
+.envoltura-ramo-central,
+.cinta-ramo-central {
+    display: none !important;
+}
+
+
+/* -----------------------------------------------------
+   CONTENEDOR DEL RAMO
+----------------------------------------------------- */
+
+#jardin-lirios {
+    overflow: hidden;
+
+    transform-origin:
+        center bottom;
+}
+
+
+/* -----------------------------------------------------
+   GRUPOS DE FLORES
+
+   Todos nacen cerca del mismo punto.
+----------------------------------------------------- */
+
+#jardin-lirios .grupo-lirios {
+
+    bottom: 13%;
+
+    width: 175px;
+    height: 400px;
+
+    transform-origin:
+        50% 100%;
+}
+
+
+/* IZQUIERDA EXTERIOR */
+
+#jardin-lirios
+.grupo-lirios:nth-child(1) {
+
+    transform:
+        translateX(-50%)
+        rotate(-17deg)
+        scale(.66);
+}
+
+
+/* IZQUIERDA INTERIOR */
+
+#jardin-lirios
+.grupo-lirios:nth-child(2) {
+
+    transform:
+        translateX(-50%)
+        rotate(-7deg)
+        scale(.82);
+}
+
+
+/* DERECHA INTERIOR */
+
+#jardin-lirios
+.grupo-lirios:nth-child(3) {
+
+    transform:
+        translateX(-50%)
+        rotate(7deg)
+        scale(.86);
+}
+
+
+/* DERECHA EXTERIOR */
+
+#jardin-lirios
+.grupo-lirios:nth-child(4) {
+
+    transform:
+        translateX(-50%)
+        rotate(17deg)
+        scale(.66);
+}
+
+
+/* =====================================================
+   BASE VERDE
+===================================================== */
+
+.base-verde-ramo {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 13%;
+
+    width: 190px;
+    height: 180px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 11;
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   HOJAS CENTRALES
+===================================================== */
+
+.hoja-ramo-central {
+
+    position: absolute;
+
+    left:
+        calc(
+            50% +
+            var(--desplazamiento)
+        );
+
+    bottom: 0;
+
+    width: 23px;
+
+    height:
+        var(--alto);
+
+    opacity: 0;
+
+    transform-origin:
+        50% 100%;
+
+    transform:
+        translateX(-50%)
+        rotate(var(--rotacion))
+        scaleY(.05);
+
+    clip-path:
+        polygon(
+            50% 0%,
+            72% 28%,
+            67% 65%,
+            50% 100%,
+            33% 65%,
+            28% 28%
+        );
+
+    background:
+        linear-gradient(
+            90deg,
+
+            #14271a 0%,
+
+            #29482c 28%,
+
+            #5f7742 49%,
+
+            #345331 67%,
+
+            #132519 100%
+        );
+
+    filter:
+        drop-shadow(
+            0 3px 2px
+            rgba(0,0,0,.24)
+        );
+
+    animation:
+        aparecerHojaRamo
+        1.1s
+        cubic-bezier(.15,.75,.25,1)
+        forwards;
+
+    animation-delay:
+        var(--retraso);
+}
+
+
+/* NERVIO CENTRAL */
+
+.hoja-ramo-central::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 5%;
+
+    width: 1px;
+    height: 87%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(190,210,115,.45),
+            transparent
+        );
+}
+
+
+/* ANIMACIÓN */
+
+@keyframes aparecerHojaRamo {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            rotate(var(--rotacion))
+            scaleY(.05);
+    }
+
+    30% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            rotate(var(--rotacion))
+            scaleY(1);
+    }
+}
+
+
+/* =====================================================
+   FORMA DE ABANICO
+
+   Las flores superiores quedan abiertas,
+   mientras los tallos convergen abajo.
+===================================================== */
+
+#jardin-lirios
+.grupo-lirios:nth-child(1) {
+
+    left: 43% !important;
+}
+
+#jardin-lirios
+.grupo-lirios:nth-child(2) {
+
+    left: 48% !important;
+}
+
+#jardin-lirios
+.grupo-lirios:nth-child(3) {
+
+    left: 52% !important;
+}
+
+#jardin-lirios
+.grupo-lirios:nth-child(4) {
+
+    left: 57% !important;
+}
+
+
+/* =====================================================
+   SOMBRA/LUZ DE LA BASE
+===================================================== */
+
+.base-verde-ramo::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -15px;
+
+    width: 130px;
+    height: 45px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,211,120,.15),
+            transparent 70%
+        );
+
+    filter:
+        blur(8px);
+}
+
+
+/* =====================================================
+   CUANDO APARECE MICHI
+===================================================== */
+
+#jardin-lirios.ramo-mostrar-michi {
+
+    transform:
+        translateY(-13vh)
+        scale(.82);
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width: 600px) {
+
+    #jardin-lirios
+    .grupo-lirios {
+
+        bottom: 24%;
+
+        width: 145px;
+        height: 330px;
+    }
+
+
+    #jardin-lirios
+    .grupo-lirios:nth-child(1) {
+
+        left: 42% !important;
+
+        transform:
+            translateX(-50%)
+            rotate(-17deg)
+            scale(.62);
+    }
+
+
+    #jardin-lirios
+    .grupo-lirios:nth-child(2) {
+
+        left: 48% !important;
+
+        transform:
+            translateX(-50%)
+            rotate(-6deg)
+            scale(.77);
+    }
+
+
+    #jardin-lirios
+    .grupo-lirios:nth-child(3) {
+
+        left: 52% !important;
+
+        transform:
+            translateX(-50%)
+            rotate(6deg)
+            scale(.80);
+    }
+
+
+    #jardin-lirios
+    .grupo-lirios:nth-child(4) {
+
+        left: 58% !important;
+
+        transform:
+            translateX(-50%)
+            rotate(17deg)
+            scale(.62);
+    }
+
+
+    .base-verde-ramo {
+
+        bottom: 24%;
+
+        width: 160px;
+        height: 145px;
+    }
+
+
+    .hoja-ramo-central {
+
+        width: 19px;
+    }
+
+
+    #jardin-lirios.ramo-mostrar-michi {
+
+        transform:
+            translateY(-14vh)
+            scale(.78);
+    }
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media (max-width: 400px) {
+
+    #jardin-lirios
+    .grupo-lirios {
+
+        bottom: 25%;
+
+        width: 135px;
+        height: 310px;
+    }
+
+
+    .base-verde-ramo {
+
+        bottom: 25%;
+
+        width: 145px;
+        height: 135px;
+    }
+
+
+    #jardin-lirios.ramo-mostrar-michi {
+
+        transform:
+            translateY(-13vh)
+            scale(.74);
+    }
+}
