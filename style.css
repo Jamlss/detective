@@ -2598,8 +2598,7 @@ button {
     #texto-cartel-final {
         left: 56%;
         top: 13%;
-
-        font-size: clamp(5px, 2vw, 8px);
+    font-size: clamp(7px, 2.4vw, 8px);
     }
 
 }
@@ -2687,13 +2686,11 @@ button {
         que ya habías ajustado.
     */
 
-    #texto-cartel-final {
-        left: 56%;
-
-        top: 13%;
-
-        width: 49%;
-    }
+#texto-cartel-final {
+    left: 56%;
+    top: 13%;
+    font-size: clamp(8px, 3vw, 12px);
+}
 
 
 
@@ -3061,14 +3058,8 @@ button {
 ===================================================== */
 
 @media (max-width: 600px) {
-
-    #jardin-lirios
-    .grupo-lirios {
-
-        bottom: 24%;
-
-        width: 145px;
-        height: 330px;
+    #texto-cartel-final {
+        font-size: clamp(5px, 2.7vw, 9px);
     }
 
 
