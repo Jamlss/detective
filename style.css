@@ -2593,14 +2593,16 @@ button {
     }
 
     #texto-cartel-final {
+    @media (max-width: 600px) {
+
+    #texto-cartel-final {
+        left: 56%;
         top: 13%;
 
-        width: 49%;
+        font-size: clamp(5px, 2vw, 8px);
+    }
 
-        gap: 2px;
-
-        font-size:
-            clamp(9px,3vw,14px);
+}
     }
 }
 
