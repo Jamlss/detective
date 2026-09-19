@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>Detective Michi</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main id="juego">
+
+    <!-- HABITACIÓN -->
+    <section id="pantalla-habitacion">
+
+        <div id="habitacion">
+
+            <img
+                id="michi"
+                src="Reposo cat.gif"
+                alt="Detective Michi"
+                draggable="false"
+            >
+
+            <div id="interaccion">
+                🔎 Investigar
+            </div>
+
+        </div>
+
+        <div id="codigo-progreso">
+            🔐 ? · ? · ?
+        </div>
+
+        <div id="controles">
+
+            <div id="cruceta">
+
+                <button class="movimiento" id="arriba" data-direccion="arriba">
+                    ▲
+                </button>
+
+                <button class="movimiento" id="izquierda" data-direccion="izquierda">
+                    ◀
+                </button>
+
+                <button class="movimiento" id="abajo" data-direccion="abajo">
+                    ▼
+                </button>
+
+                <button class="movimiento" id="derecha" data-direccion="derecha">
+                    ▶
+                </button>
+
+            </div>
+
+            <button id="boton-investigar">
+                🔎
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- DIÁLOGO -->
+    <div id="dialogo" class="oculto">
+
+        <div class="caja-dialogo">
+
+            <div class="dialogo-icono">
+                🐱
+            </div>
+
+            <p id="texto-dialogo">
+                Parece que aquí hay algo...
+            </p>
+
+            <button id="continuar-dialogo">
+                Investigar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MINIJUEGO 1 -->
+    <section id="pantalla-memoria" class="oculto">
+
+        <div class="panel-minijuego">
+
+            <div class="titulo-minijuego">
+                🔎 ARCHIVO MISTERIOSO
+            </div>
+
+            <p class="descripcion-minijuego">
+                Encuentra todas las parejas para descubrir la pista.
+            </p>
+
+            <div id="tablero-memoria"></div>
+
+            <div id="contador-memoria">
+                Parejas encontradas:
+                <span id="parejas">0</span>/4
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MINIJUEGO 2 -->
+    <section id="pantalla-rompecabezas" class="oculto">
+
+        <div class="panel-rompecabezas">
+
+            <div class="titulo-minijuego">
+                📜 EVIDENCIA ROTA
+            </div>
+
+            <p class="descripcion-minijuego">
+                Reconstruye el dibujo.
+                Toca dos piezas para intercambiarlas.
+            </p>
+
+            <div id="tablero-rompecabezas"></div>
+
+            <div id="mensaje-rompecabezas">
+                Selecciona una pieza.
+            </div>
+
+            <button id="continuar-rompecabezas" class="oculto">
+                Continuar
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MINIJUEGO 3 -->
+    <section id="pantalla-circuito" class="oculto">
+
+        <div class="panel-circuito">
+
+            <div class="titulo-circuito">
+                ⚡ SISTEMA DE SEGURIDAD ⚡
+            </div>
+
+            <p class="descripcion-circuito">
+                Conecta cada operación con su resultado correcto.
+            </p>
+
+            <div id="zona-circuito">
+
+                <svg id="cables-svg"></svg>
+
+                <div id="columna-operaciones" class="columna-circuito">
+
+                    <div class="encabezado-circuito">
+                        OPERACIONES
+                    </div>
+
+                    <button class="operacion-circuito" data-id="op1" data-respuesta="120">
+                        <span>5!</span>
+                        <span class="conector conector-operacion"></span>
+                    </button>
+
+                    <button class="operacion-circuito" data-id="op2" data-respuesta="7">
+                        <span>√49</span>
+                        <span class="conector conector-operacion"></span>
+                    </button>
+
+                    <button class="operacion-circuito" data-id="op3" data-respuesta="20">
+                        <span>2 + 3(3 × 2)</span>
+                        <span class="conector conector-operacion"></span>
+                    </button>
+
+                    <button class="operacion-circuito" data-id="op4" data-respuesta="8">
+                        <span>(4² + 8) ÷ 3</span>
+                        <span class="conector conector-operacion"></span>
+                    </button>
+
+                </div>
+
+                <div id="columna-resultados" class="columna-circuito">
+
+                    <div class="encabezado-circuito">
+                        RESULTADOS
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="mensaje-circuito">
+                Selecciona una operación.
+            </div>
+
+            <div class="botones-circuito">
+
+                <button id="reiniciar-circuito">
+                    ↻ Restablecer
+                </button>
+
+                <button id="activar-circuito">
+                    ⚡ ACTIVAR
+                </button>
+
+            </div>
+
+            <button id="continuar-circuito" class="oculto">
+                Continuar
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PISTA -->
+    <div id="pantalla-pista" class="oculto">
+
+        <div class="caja-pista">
+
+            <div class="estrella-pista">
+                ✦
+            </div>
+
+            <h2>¡PISTA ENCONTRADA!</h2>
+
+            <p id="texto-pista"></p>
+
+            <div id="numero-pista" class="numero-pista">
+                ?
+            </div>
+
+            <div id="codigo-pista" class="codigo-pista">
+                🔐 ? · ? · ?
+            </div>
+
+            <button id="volver-habitacion">
+                Continuar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CERRADURA -->
+    <section id="pantalla-cerradura" class="oculto">
+
+        <div class="panel-cerradura">
+
+            <div class="titulo-cerradura">
+                🔐 CERRADURA
+            </div>
+
+            <p id="mensaje-cerradura">
+                Introduce el código de tres dígitos.
+            </p>
+
+            <div id="visor-codigo">
+                _ _ _
+            </div>
+
+            <div id="teclado-cerradura">
+
+                <button class="numero-teclado" data-numero="1">1</button>
+                <button class="numero-teclado" data-numero="2">2</button>
+                <button class="numero-teclado" data-numero="3">3</button>
+
+                <button class="numero-teclado" data-numero="4">4</button>
+                <button class="numero-teclado" data-numero="5">5</button>
+                <button class="numero-teclado" data-numero="6">6</button>
+
+                <button class="numero-teclado" data-numero="7">7</button>
+                <button class="numero-teclado" data-numero="8">8</button>
+                <button class="numero-teclado" data-numero="9">9</button>
+
+                <button id="borrar-codigo">⌫</button>
+                <button class="numero-teclado" data-numero="0">0</button>
+                <button id="confirmar-codigo">✓</button>
+
+            </div>
+
+            <button id="cerrar-cerradura">
+                Volver
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL -->
+    <section id="pantalla-final" class="oculto">
+
+        <div id="cielo-final"></div>
+
+        <div id="estrellas-final"></div>
+
+        <!-- LOS LIRIOS SE GENERAN CON JAVASCRIPT -->
+        <div id="jardin-lirios"></div>
+
+        <div id="petalos-final"></div>
+
+        <div id="mensaje-final" class="mensaje-final-oculto">
+
+            <div class="final-estrellita">
+                ✦
+            </div>
+
+            <h1>CASO RESUELTO</h1>
+
+            <img
+                src="Reposo cat.gif"
+                id="michi-final"
+                alt="Michi"
+                draggable="false"
+            >
+
+            <p>
+                Después de tantas pistas,<br>
+                Michi finalmente encontró<br>
+                lo que estaba buscando...
+            </p>
+
+            <div class="linea-final"></div>
+
+            <p class="mensaje-especial">
+                Para ti 💛
+            </p>
+
+        </div>
+
+
+        <!-- MICHI CON EL CARTEL FINAL -->
+        <div id="michi-cartel-final" class="michi-cartel-oculto">
+
+            <img
+                src="Ultimo.png"
+                id="imagen-michi-cartel"
+                alt="Michi sosteniendo un cartel"
+                draggable="false"
+            >
+
+            <div id="texto-cartel-final">
+                <span>Si no te gustó,</span>
+                <span>te debo unas gomitas 🍬</span>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
